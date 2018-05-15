@@ -30,3 +30,4 @@ Brainstorming:-
 
 - create unit testing
 - read commands from file
+- get input from user

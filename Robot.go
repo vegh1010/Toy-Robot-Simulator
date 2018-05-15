@@ -49,9 +49,12 @@ type Robot struct {
 //default position and execute command provided
 func (self *Robot) Init(board Board, command string) {
 	command = strings.ToUpper(command)
+
+	//default position
 	var defaultPlace = "PLACE 0,0,NORTH"
 
-	//validate command
+	//validate if it's a PLACE command
+	//if not, execute default placement and move function
 	if !self.Place(command) {
 		self.Place(defaultPlace)
 		self.Move(board, command)
