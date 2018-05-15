@@ -74,6 +74,8 @@ func (self *Robot) Move(board Board, command string) {
 		self.Place(command)
 	} else if command == "REPORT" {
 		fmt.Println(self.GetReport())
+
+		//if robot not on board, LEFT, RIGHT and MOVE commands cannot be executed
 	} else if self.Onboard(board) {
 		if command == "LEFT" {
 			//rotate left
