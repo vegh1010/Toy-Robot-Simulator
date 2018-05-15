@@ -8,22 +8,27 @@ import (
 
 //Variables to manage toy robot's movement
 var (
-	NORTH = Coordinate{1, 0}
-	EAST  = Coordinate{0, 1}
-	WEST  = Coordinate{0, -1}
-	SOUTH = Coordinate{-1, 0}
+	//robot's movement based on facing position
+	MOVEMENT = map[string]Coordinate{
+		"NORTH": {1, 0},
+		"EAST": {0, 1},
+		"SOUTH": {-1, 0},
+		"WEST": {0, -1},
+	}
 
+	//facing id
 	FACING = map[int]string{
 		1: "NORTH",
 		2: "EAST",
-		3: "WEST",
-		4: "SOUTH",
+		3: "SOUTH",
+		4: "WEST",
 	}
+	//invert facing id
 	FACING_INVERT = map[string]int{
 		"NORTH": 1,
 		"EAST": 2,
-		"WEST": 3,
-		"SOUTH": 4,
+		"SOUTH": 3,
+		"WEST": 4,
 	}
 )
 
@@ -53,24 +58,46 @@ func (self *Robot) Init(board Board, command string) {
 	}
 }
 
+//check robot is on board
+func (self *Robot) Onboard(board Board) (bool) {
+	if self.X < board.Width && self.Y < board.Height {
+		return true
+	}
+	return false
+}
+
 //Control robot's movement based on command provided
 func (self *Robot) Move(board Board, command string) {
 	//TODO: PLACE, MOVE, LEFT, RIGHT, REPORT
 	command = strings.ToUpper(command)
 	if strings.Contains(command, "PLACE") {
 		self.Place(command)
-	} else if command == "LEFT" {
-		self.Face -= 1
-		if self.Face < 1 {
-			self.Face = 4
-		}
-	} else if command == "RIGHT" {
-		self.Face += 1
-		if self.Face > 4 {
-			self.Face = 1
-		}
 	} else if command == "REPORT" {
 		fmt.Println(self.GetReport())
+	} else if self.Onboard(board) {
+		if command == "LEFT" {
+			//rotate left
+			self.Face -= 1
+			if self.Face < 1 {
+				self.Face = 4
+			}
+		} else if command == "RIGHT" {
+			//rotate right
+			self.Face += 1
+			if self.Face > 4 {
+				self.Face = 1
+			}
+		} else if command == "MOVE" {
+			//get movement coordinates
+			moveTo := MOVEMENT[FACING[self.Face]]
+			x := self.X + moveTo.X
+			y := self.Y + moveTo.Y
+			//validate if movement is within board
+			if x >=0 && y >=0 && x < board.Width && y < board.Height {
+				self.X = x
+				self.Y = y
+			}
+		}
 	}
 }
 

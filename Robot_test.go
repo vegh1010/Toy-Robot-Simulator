@@ -3,6 +3,7 @@ package main
 import (
 	"testing"
 	"github.com/stretchr/testify/assert"
+	"fmt"
 )
 
 func TestDefaultRobotCoordinate(t *testing.T) {
@@ -89,5 +90,40 @@ func TestRobotTurnAndReport(t *testing.T) {
 	wallE.Move(board, "RIGHT")
 	wallE.Move(board, "REPORT")
 
-	assert.Equal(t, "1,5,SOUTH", wallE.GetReport())
+	assert.Equal(t, "1,5,NORTH", wallE.GetReport())
+}
+
+//a robot that is not on the board can only execute command PLACE and REPORT
+func TestStuckRobotMoveAndReport(t *testing.T) {
+	var board Board
+	board.Height = 5
+	board.Width = 5
+
+	var wallE Robot
+	wallE.Init(board, "PLACE 1,5,NORTH")
+	wallE.Move(board, "RIGHT")
+	wallE.Move(board, "MOVE")
+	wallE.Move(board, "RIGHT")
+	wallE.Move(board, "MOVE")
+	wallE.Move(board, "REPORT")
+
+	assert.Equal(t, "1,5,NORTH", wallE.GetReport())
+}
+
+//a robot that is not on the board can only execute command PLACE and REPORT
+func TestRobotMoveAndReport(t *testing.T) {
+	fmt.Println("TestRobotMoveAndReport")
+	var board Board
+	board.Height = 5
+	board.Width = 5
+
+	var wallE Robot
+	wallE.Init(board, "PLACE 2,2,NORTH")
+	wallE.Move(board, "RIGHT")
+	wallE.Move(board, "MOVE")
+	wallE.Move(board, "RIGHT")
+	wallE.Move(board, "MOVE")
+	wallE.Move(board, "REPORT")
+
+	assert.Equal(t, "1,3,SOUTH", wallE.GetReport())
 }
