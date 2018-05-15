@@ -11,9 +11,9 @@ var (
 	//robot's movement based on facing position
 	MOVEMENT = map[string]Coordinate{
 		"NORTH": {0, 1},
-		"EAST": {1, 0},
+		"EAST":  {1, 0},
 		"SOUTH": {0, -1},
-		"WEST": {-1, 0},
+		"WEST":  {-1, 0},
 	}
 
 	//facing id
@@ -26,9 +26,9 @@ var (
 	//invert facing id
 	FACING_INVERT = map[string]int{
 		"NORTH": 1,
-		"EAST": 2,
+		"EAST":  2,
 		"SOUTH": 3,
-		"WEST": 4,
+		"WEST":  4,
 	}
 )
 
@@ -75,10 +75,6 @@ func (self *Robot) Move(board Board, command string) {
 	command = strings.ToUpper(command)
 	if strings.Contains(command, "PLACE") {
 		self.Place(command)
-	} else if command == "REPORT" {
-		fmt.Println(self.GetReport())
-
-		//if robot not on board, LEFT, RIGHT and MOVE commands cannot be executed
 	} else if self.Onboard(board) {
 		if command == "LEFT" {
 			//rotate left
@@ -98,10 +94,14 @@ func (self *Robot) Move(board Board, command string) {
 			x := self.X + moveTo.X
 			y := self.Y + moveTo.Y
 			//validate if movement is within board
-			if x >=0 && y >=0 && x < board.Width && y < board.Height {
+			if x >= 0 && y >= 0 && x < board.Width && y < board.Height {
 				self.X = x
 				self.Y = y
 			}
+		} else if command == "REPORT" {
+			fmt.Println(self.GetReport())
+
+			//if robot not on board, LEFT, RIGHT and MOVE commands cannot be executed
 		}
 	}
 }
@@ -115,11 +115,11 @@ func (self *Robot) Place(command string) (bool) {
 			args := strings.Split(commands[1], ",")
 			if len(args) == 3 {
 				//validate arguments
-				x, err :=strconv.Atoi(args[0])
+				x, err := strconv.Atoi(args[0])
 				if err != nil {
 					return false
 				}
-				y, err :=strconv.Atoi(args[1])
+				y, err := strconv.Atoi(args[1])
 				if err != nil {
 					return false
 				}
