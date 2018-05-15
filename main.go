@@ -2,17 +2,22 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
 
 //TODO: add description in README.md
 //TODO: add comments on unit testing
-//TODO: set file path as argument when run program (./binary <file path>)
 //TODO: option if file path no specified or not found change to User Input Mode
-//TODO: add more unit testing based on PROBLEM.md Example Input and Output
 //TODO: research on suitable terminal based graphic
 func main() {
+	//check if file path is provided
+	if len(os.Args) != 2 {
+		//panic if not provided
+		panic("File Path required")
+	}
+
 	//read commands from specified file path
-	commands, err := ReadCommands("./commands.txt")
+	commands, err := ReadCommands(os.Args[1])
 	check(err)
 	for _, command := range commands {
 		fmt.Println(command)

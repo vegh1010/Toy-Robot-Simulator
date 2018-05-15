@@ -3,7 +3,6 @@ package main
 import (
 	"testing"
 	"github.com/stretchr/testify/assert"
-	"fmt"
 )
 
 func TestDefaultRobotCoordinate(t *testing.T) {
@@ -37,7 +36,7 @@ func TestRobotTurnLeft(t *testing.T) {
 	wallE.Init(board, "PLACE 0,0,NORTH")
 	wallE.Move(board, "LEFT")
 
-	assert.Equal(t, "0,0,SOUTH", wallE.GetReport())
+	assert.Equal(t, "0,0,WEST", wallE.GetReport())
 }
 
 func TestRobotTurnRight(t *testing.T) {
@@ -62,7 +61,7 @@ func TestRobotTurnLeftTwice(t *testing.T) {
 	wallE.Move(board, "LEFT")
 	wallE.Move(board, "LEFT")
 
-	assert.Equal(t, "0,0,WEST", wallE.GetReport())
+	assert.Equal(t, "0,0,SOUTH", wallE.GetReport())
 }
 
 func TestRobotTurnRightTwice(t *testing.T) {
@@ -75,7 +74,7 @@ func TestRobotTurnRightTwice(t *testing.T) {
 	wallE.Move(board, "RIGHT")
 	wallE.Move(board, "RIGHT")
 
-	assert.Equal(t, "0,0,WEST", wallE.GetReport())
+	assert.Equal(t, "0,0,SOUTH", wallE.GetReport())
 }
 
 func TestRobotTurnAndReport(t *testing.T) {
@@ -112,7 +111,6 @@ func TestStuckRobotMoveAndReport(t *testing.T) {
 
 //a robot that is not on the board can only execute command PLACE and REPORT
 func TestRobotMoveAndReport(t *testing.T) {
-	fmt.Println("TestRobotMoveAndReport")
 	var board Board
 	board.Height = 5
 	board.Width = 5
@@ -125,5 +123,50 @@ func TestRobotMoveAndReport(t *testing.T) {
 	wallE.Move(board, "MOVE")
 	wallE.Move(board, "REPORT")
 
-	assert.Equal(t, "1,3,SOUTH", wallE.GetReport())
+	assert.Equal(t, "3,1,SOUTH", wallE.GetReport())
+}
+
+//PROBLEM.md Example A
+func TestRobotExampleA(t *testing.T) {
+	var board Board
+	board.Height = 5
+	board.Width = 5
+
+	var wallE Robot
+	wallE.Init(board, "PLACE 0,0,NORTH")
+	wallE.Move(board, "MOVE")
+	wallE.Move(board, "REPORT")
+
+	assert.Equal(t, "0,1,NORTH", wallE.GetReport())
+}
+
+//PROBLEM.md Example B
+func TestRobotExampleB(t *testing.T) {
+	var board Board
+	board.Height = 5
+	board.Width = 5
+
+	var wallE Robot
+	wallE.Init(board, "PLACE 0,0,NORTH")
+	wallE.Move(board, "LEFT")
+	wallE.Move(board, "REPORT")
+
+	assert.Equal(t, "0,0,WEST", wallE.GetReport())
+}
+
+//PROBLEM.md Example C
+func TestRobotExampleC(t *testing.T) {
+	var board Board
+	board.Height = 5
+	board.Width = 5
+
+	var wallE Robot
+	wallE.Init(board, "PLACE 1,2,EAST")
+	wallE.Move(board, "MOVE")
+	wallE.Move(board, "MOVE")
+	wallE.Move(board, "LEFT")
+	wallE.Move(board, "MOVE")
+	wallE.Move(board, "REPORT")
+
+	assert.Equal(t, "3,3,NORTH", wallE.GetReport())
 }

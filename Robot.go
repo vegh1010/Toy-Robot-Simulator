@@ -10,10 +10,10 @@ import (
 var (
 	//robot's movement based on facing position
 	MOVEMENT = map[string]Coordinate{
-		"NORTH": {1, 0},
-		"EAST": {0, 1},
-		"SOUTH": {-1, 0},
-		"WEST": {0, -1},
+		"NORTH": {0, 1},
+		"EAST": {1, 0},
+		"SOUTH": {0, -1},
+		"WEST": {-1, 0},
 	}
 
 	//facing id
@@ -83,13 +83,13 @@ func (self *Robot) Move(board Board, command string) {
 		if command == "LEFT" {
 			//rotate left
 			self.Face -= 1
-			if self.Face < 1 {
+			if self.Face <= 0 {
 				self.Face = 4
 			}
 		} else if command == "RIGHT" {
 			//rotate right
 			self.Face += 1
-			if self.Face > 4 {
+			if self.Face >= 5 {
 				self.Face = 1
 			}
 		} else if command == "MOVE" {
