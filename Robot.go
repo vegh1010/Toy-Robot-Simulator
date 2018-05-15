@@ -57,6 +57,21 @@ func (self *Robot) Init(board Board, command string) {
 func (self *Robot) Move(board Board, command string) {
 	//TODO: PLACE, MOVE, LEFT, RIGHT, REPORT
 	command = strings.ToUpper(command)
+	if strings.Contains(command, "PLACE") {
+		self.Place(command)
+	} else if command == "LEFT" {
+		self.Face -= 1
+		if self.Face < 1 {
+			self.Face = 4
+		}
+	} else if command == "RIGHT" {
+		self.Face += 1
+		if self.Face > 4 {
+			self.Face = 1
+		}
+	} else if command == "REPORT" {
+		fmt.Println(self.GetReport())
+	}
 }
 
 //manage robot's placement
@@ -98,7 +113,9 @@ func (self *Robot) Place(command string) (bool) {
 	return false
 }
 
-//Control robot's movement based on command provided
+//get robot's coordinate and face position
 func (self *Robot) GetReport() (string) {
-	return fmt.Sprint(self.X, ",", self.Y, ",", FACING[self.Face])
+	report := fmt.Sprint(self.X, ",", self.Y, ",", FACING[self.Face])
+
+	return report
 }
