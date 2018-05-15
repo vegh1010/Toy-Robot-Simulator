@@ -6,9 +6,9 @@ import (
 )
 
 //TODO: add description in README.md
-//TODO: add comments on unit testing
 //TODO: option if file path no specified or not found change to User Input Mode
 //TODO: research on suitable terminal based graphic
+
 func main() {
 	//check if file path is provided
 	if len(os.Args) != 2 {

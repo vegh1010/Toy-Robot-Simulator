@@ -5,6 +5,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+//test robot's default placement if command is invalid
 func TestDefaultRobotCoordinate(t *testing.T) {
 	var board Board
 	board.Height = 5
@@ -16,6 +17,7 @@ func TestDefaultRobotCoordinate(t *testing.T) {
 	assert.Equal(t, "0,0,NORTH", wallE.GetReport())
 }
 
+//test set robot's placement
 func TestInitRobotCoordinate(t *testing.T) {
 	var board Board
 	board.Height = 5
@@ -27,6 +29,7 @@ func TestInitRobotCoordinate(t *testing.T) {
 	assert.Equal(t, "1,2,NORTH", wallE.GetReport())
 }
 
+//test robot turn left
 func TestRobotTurnLeft(t *testing.T) {
 	var board Board
 	board.Height = 5
@@ -39,6 +42,7 @@ func TestRobotTurnLeft(t *testing.T) {
 	assert.Equal(t, "0,0,WEST", wallE.GetReport())
 }
 
+//test robot turn right
 func TestRobotTurnRight(t *testing.T) {
 	var board Board
 	board.Height = 5
@@ -51,6 +55,7 @@ func TestRobotTurnRight(t *testing.T) {
 	assert.Equal(t, "0,0,EAST", wallE.GetReport())
 }
 
+//test robot turn left twice
 func TestRobotTurnLeftTwice(t *testing.T) {
 	var board Board
 	board.Height = 5
@@ -64,6 +69,7 @@ func TestRobotTurnLeftTwice(t *testing.T) {
 	assert.Equal(t, "0,0,SOUTH", wallE.GetReport())
 }
 
+//test robot turn right twice
 func TestRobotTurnRightTwice(t *testing.T) {
 	var board Board
 	board.Height = 5
@@ -77,6 +83,7 @@ func TestRobotTurnRightTwice(t *testing.T) {
 	assert.Equal(t, "0,0,SOUTH", wallE.GetReport())
 }
 
+//test robot turning and report
 func TestRobotTurnAndReport(t *testing.T) {
 	var board Board
 	board.Height = 5
@@ -92,7 +99,7 @@ func TestRobotTurnAndReport(t *testing.T) {
 	assert.Equal(t, "1,5,NORTH", wallE.GetReport())
 }
 
-//a robot that is not on the board can only execute command PLACE and REPORT
+//test a robot that is not on the board can only execute command PLACE and REPORT
 func TestStuckRobotMoveAndReport(t *testing.T) {
 	var board Board
 	board.Height = 5
