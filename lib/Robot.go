@@ -1,4 +1,4 @@
-package main
+package toy_robot_lib
 
 import (
 	"fmt"
@@ -31,12 +31,6 @@ var (
 		"WEST":  4,
 	}
 )
-
-//Board's struct to define size of the board
-type Board struct {
-	Height int
-	Width  int
-}
 
 //Toy Robot's struct where it's coordinate and commands will be processed
 type Robot struct {

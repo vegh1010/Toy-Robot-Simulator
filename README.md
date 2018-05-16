@@ -37,4 +37,11 @@ Step to Step:
     3) done. The toy robot will move based on the commands provided in the text file or from console input.
 
 Code Structure Design:
-    1) TODO: once code is workable, rearrange code for reusability and readability
+    1) For this project, 2 packages have been created.
+        - generic contains any generic functions to support toy robot simulator
+        - lib contains data structs, initialize data and reference functions to support toy
+        robot simulator's features
+    2) In main.go contains basic conditions to run the toy robot simulator.
+    3) From my perspective, this structure design will allow for a more manageable, reusable and
+    readable of code.
+    4) Further explanation has been included in the code.

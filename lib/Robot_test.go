@@ -1,4 +1,4 @@
-package main
+package toy_robot_lib
 
 import (
 	"testing"
