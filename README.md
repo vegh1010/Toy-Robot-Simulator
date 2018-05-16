@@ -22,6 +22,13 @@ Commands Available:
         - X: 0-4
         - Y: 0-4
         - F: NORTH, SOUTH, EAST, WEST
+
+          NORTH
+            |
+    WEST ---|--- EAST
+            |
+          SOUTH
+
    2) MOVE
         - will move forward based on facing direction
    3) RIGHT
@@ -37,11 +44,12 @@ Step to Step:
     3) done. The toy robot will move based on the commands provided in the text file or from console input.
 
 Code Structure Design:
-    1) For this project, 2 packages have been created.
+    1) For this project, 3 packages have been created.
         - generic contains any generic functions to support toy robot simulator
         - lib contains data structs, initialize data and reference functions to support toy
         robot simulator's features
-    2) In main.go contains basic conditions to run the toy robot simulator.
+        - gui contains function to output basic gui on console
+    2) In main.go contains basic conditions to run the toy robot simulator and output the gui.
     3) From my perspective, this structure design will allow for a more manageable, reusable and
     readable of code.
     4) Further explanation has been included in the code.

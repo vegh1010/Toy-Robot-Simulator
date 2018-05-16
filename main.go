@@ -5,17 +5,17 @@ import (
 	"os"
 	"github.com/vegh1010/Toy-Robot-Simulator/lib"
 	"github.com/vegh1010/Toy-Robot-Simulator/generic"
+	"github.com/vegh1010/Toy-Robot-Simulator/gui"
 )
 
-//TODO: add description in README.md
-//TODO: research on suitable terminal based graphic
-
 func main() {
-	//initialize board size
-	var board toy_robot_lib.Board
-	board.Init()
+	//define reference functions
+	var GUI = toy_robot_gui.Output
+	var EnterCommand = toy_robot_generic.EnterCommand
 
 	//initialize variable
+	var board toy_robot_lib.Board
+	board.Init()
 	var wallE toy_robot_lib.Robot
 	var commands []string
 
@@ -25,18 +25,21 @@ func main() {
 		commands, _ = toy_robot_generic.ReadCommands(os.Args[1])
 	}
 
+	//if no commands, User Input Mode
 	if len(commands) == 0 {
 		fmt.Println("Commands not found. Switching to User Input Mode.")
 
 		//get input command
-		var command = toy_robot_generic.EnterCommand()
+		var command = EnterCommand()
 		//initialize first position if PLACE command entered
 		wallE.Init(board, command)
+		GUI(board, wallE)
 
 		for {
 			//get input command
-			command = toy_robot_generic.EnterCommand()
+			command = EnterCommand()
 			wallE.Move(board, command)
+			GUI(board, wallE)
 		}
 	} else {
 		fmt.Println("Commands found. Processing commands...")
@@ -45,20 +48,18 @@ func main() {
 			startCommand = commands[0]
 			commands = commands[1:]
 		}
+
+		fmt.Println("Command:", startCommand)
 		//initialize first position if specified else default
 		wallE.Init(board, startCommand)
+		GUI(board, wallE)
 
 		//run commands from file
 		for _, command := range commands {
+			fmt.Println("Command:", command)
 			//execute move function
 			wallE.Move(board, command)
+			GUI(board, wallE)
 		}
-	}
-}
-
-//check if err, panic err message
-func check(err error) {
-	if err != nil {
-		panic(err)
 	}
 }

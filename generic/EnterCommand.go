@@ -1,3 +1,4 @@
+// package toy_robot_generic is a generic package that contains support functions.
 package toy_robot_generic
 
 import (

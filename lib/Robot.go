@@ -1,3 +1,5 @@
+// package toy_robot_lib is a library package that contains data struct, reference functions
+// and unit test.
 package toy_robot_lib
 
 import (
@@ -65,10 +67,11 @@ func (self *Robot) Onboard(board Board) (bool) {
 
 //Control robot's movement based on command provided
 func (self *Robot) Move(board Board, command string) {
-	//TODO: PLACE, MOVE, LEFT, RIGHT, REPORT
 	command = strings.ToUpper(command)
 	if strings.Contains(command, "PLACE") {
 		self.Place(command)
+
+		//if robot not on board, LEFT, RIGHT and MOVE commands cannot be executed
 	} else if self.Onboard(board) {
 		if command == "LEFT" {
 			//rotate left
@@ -94,8 +97,6 @@ func (self *Robot) Move(board Board, command string) {
 			}
 		} else if command == "REPORT" {
 			fmt.Println(self.GetReport())
-
-			//if robot not on board, LEFT, RIGHT and MOVE commands cannot be executed
 		}
 	}
 }

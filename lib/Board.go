@@ -1,3 +1,5 @@
+// package toy_robot_lib is a library package that contains data struct, reference functions
+// and unit test.
 package toy_robot_lib
 
 //Board's struct to define size of the board
