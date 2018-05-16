@@ -45,6 +45,9 @@ Step to Step:
     2) run the build. ie: ./build <file path optional>
     3) done. The toy robot will move based on the commands provided in the text file or from console input.
 
+    Note: board size can be modified by changing the values in board.json. The program will try to read the data
+    from board.json and used it if the json file and data defined is valid. Default value is 5 x 5.
+
 Code Structure Design:
     1) For this project, 3 packages have been created.
         - generic contains any generic functions to support toy robot simulator
