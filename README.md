@@ -6,16 +6,17 @@ Tools Used:
    2) bash
 
 Assumptions:
-   1) file path needs to be provided as an argument when executing this program. ie: ./program <file path>
-   2) If PLACE command is not specified during the start, the toy robot will be place by default 0,0,NORTH.
-   3) If a PLACE command is provided during the start by invalid for some reason, the toy robot will be place on
-   the default coordinates.
-   4) The only commands that the toy robot will accept are PLACE, MOVE, RIGHT, LEFT and REPORT. The rest will be
-   ignore.
-   5) The toy robot will ignore all commands that will cause it to fall.
-   6) If the toy robot is not on the board can only accept PLACE command.
-   7) If file not found or no commands provided, commands are switch to User Input Mode where users need
+   1) Predefine commands can be execute from a file by including file path as an argument
+   when executing this program. ie: ./program <file path>
+   2) If file not found or no commands provided, commands are switch to User Input Mode where users need
    to manual input commands.
+   3) If the toy robot is not on the board, it can only accept PLACE command.
+   4) If PLACE command is not specified during the start, the toy robot will be place by default 0,0,NORTH.
+   5) If a PLACE command that is provided during the start is invalid for some reason, the toy robot will be
+   place on the default coordinates.
+   6) The only commands that the toy robot will accept are PLACE, MOVE, RIGHT, LEFT and REPORT. The rest will be
+   ignore.
+   7) The toy robot will ignore all commands that will cause it to fall.
 
 Commands Available:
    1) PLACE X,Y,F
