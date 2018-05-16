@@ -18,7 +18,8 @@ var (
 	}
 )
 
-func Output(board toy_robot_lib.Board, wallE toy_robot_lib.Robot) {
+//output gui on terminal
+func GUI(board toy_robot_lib.Board, wallE toy_robot_lib.Robot) {
 	for y := board.Height-1; y >= 0; y-- {
 		var row []string
 		for x := 0; x < board.Height; x++ {

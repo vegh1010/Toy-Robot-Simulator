@@ -16,7 +16,8 @@ Assumptions:
    place on the default coordinates.
    6) The only commands that the toy robot will accept are PLACE, MOVE, RIGHT, LEFT and REPORT. The rest will be
    ignore.
-   7) The toy robot will ignore all commands that will cause it to fall.
+   7) Commands are not case sensitive.
+   8) The toy robot will ignore all commands that will cause it to fall.
 
 Commands Available:
    1) PLACE X,Y,F

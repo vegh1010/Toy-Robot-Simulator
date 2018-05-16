@@ -71,18 +71,18 @@ func (self *Robot) Move(board Board, command string) {
 	if strings.Contains(command, "PLACE") {
 		self.Place(command)
 
-		//if robot not on board, LEFT, RIGHT and MOVE commands cannot be executed
+		//if robot not on board, LEFT, RIGHT, MOVE and REPORT commands cannot be executed
 	} else if self.Onboard(board) {
 		if command == "LEFT" {
 			//rotate left
 			self.Face -= 1
-			if self.Face <= 0 {
+			if _, exist := FACING[self.Face]; !exist{
 				self.Face = 4
 			}
 		} else if command == "RIGHT" {
 			//rotate right
 			self.Face += 1
-			if self.Face >= 5 {
+			if _, exist := FACING[self.Face]; !exist{
 				self.Face = 1
 			}
 		} else if command == "MOVE" {

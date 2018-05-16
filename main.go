@@ -10,7 +10,7 @@ import (
 
 func main() {
 	//define reference functions
-	var GUI = toy_robot_gui.Output
+	var GUI = toy_robot_gui.GUI
 	var EnterCommand = toy_robot_generic.EnterCommand
 
 	//initialize variable
