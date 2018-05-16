@@ -6,8 +6,8 @@ A toy robot simulator that accepts commands from a text file and move on a 5 x 5
    2) bash
 
 ### Assumptions:
-   1) Predefine commands can be execute from a file by including file path as an argument when executing this program. ie: ./program <file path>
-   2) If file not found or no commands provided, commands are switch to User Input Mode where users need to manual input commands.
+   1) Predefine commands can be execute from a file by including file path as an argument when executing this program. ie: ./program ./commands.txt
+   2) If file not found or no commands provided, commands are switch to User Input Mode where users need to manually input commands.
    3) Commands are not case sensitive. The program will convert any commands to uppercase.
    4) If the toy robot is not on the board, it can only accept PLACE command.
    5) If PLACE command is not specified during the start, the toy robot will be place by default 0,0,NORTH.
